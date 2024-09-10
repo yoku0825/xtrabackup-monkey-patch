@@ -1,0 +1,2 @@
+/usr/bin/ar qc libkmippp.a  CMakeFiles/kmippp.dir/kmippp.cpp.o
+/usr/bin/ranlib libkmippp.a
