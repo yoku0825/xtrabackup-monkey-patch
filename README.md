@@ -13,3 +13,20 @@ $ cmake3 -DCMAKE_INSTALL_PREFIX=/usr/xtrabackup/8.0.35-1-patched -DWITH_BOOST=./
 $ make
 $ make install
 ```
+
+## Generate new version
+
+```bash
+$ git clone https://github.com/yoku0825/xtrabackup-monkey-patch.git
+$ cd xtrabackup-monkey-patch
+
+$ git checkout main
+$ git checkout -b new_branch
+## Extract new version xtrabackup source into src ##
+$ git add src
+$ git commit -m "Original percona-xtrabackup-xxx"
+$ git tag "percona-xtrabackup-xxx_orig"
+
+$ git cherry-pick commit_hash_of_old_version
+$ git tag "percona-xtrabackup-xxx_patched"
+```
