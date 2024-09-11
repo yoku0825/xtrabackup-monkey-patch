@@ -1,5 +1,15 @@
 # xtrabackup-monkey-patch
 
+## Feature
+
+- Add `--history-disable-log-bin` to avoid errant GTID when backup from replica server
+
+### How to use
+
+```
+$ xtrabackup --history --history-disable-log-bin ..
+```
+
 ## Prepare for build
 
 ```bash
