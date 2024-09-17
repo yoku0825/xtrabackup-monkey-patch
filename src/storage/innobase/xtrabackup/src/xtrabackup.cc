@@ -473,6 +473,7 @@ uint opt_backup_lock_timeout = 0;
 uint opt_backup_lock_retry_count = 0;
 
 const char *opt_history = NULL;
+bool opt_history_disable_log_bin = false;
 bool opt_decrypt = false;
 uint opt_read_buffer_size = 0;
 
@@ -735,6 +736,7 @@ enum options_xtrabackup {
   OPT_LOCK_WAIT_QUERY_TYPE,
   OPT_KILL_LONG_QUERY_TYPE,
   OPT_HISTORY,
+  OPT_HISTORY_DISABLE_LOG_BIN,
   OPT_KILL_LONG_QUERIES_TIMEOUT,
   OPT_LOCK_WAIT_TIMEOUT,
   OPT_LOCK_WAIT_THRESHOLD,
@@ -1265,6 +1267,11 @@ struct my_option xb_client_options[] = {
      "series name may be specified that will be placed with the history "
      "record for the current backup being taken.",
      NULL, NULL, 0, GET_STR, OPT_ARG, 0, 0, 0, 0, 0, 0},
+
+    {"history-disable-log-bin", OPT_HISTORY_DISABLE_LOG_BIN,
+     "This option turns off sql_log_bin during writing into backup history by --history.",
+     &opt_history_disable_log_bin, &opt_history_disable_log_bin,
+     0, GET_BOOL, NO_ARG, 0, 0, 0, 0, 0, 0},
 
     {"kill-long-queries-timeout", OPT_KILL_LONG_QUERIES_TIMEOUT,
      "This option specifies the number of seconds innobackupex waits "
