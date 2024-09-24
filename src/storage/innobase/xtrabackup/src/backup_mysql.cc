@@ -1851,6 +1851,10 @@ write_xtrabackup_info(MYSQL *connection)
 	if (!opt_history) {
 		goto cleanup;
 	}
+        if (opt_history_disable_log_bin)
+	{
+		xb_mysql_query(connection, "SET SESSION sql_log_bin = OFF", false);
+	}
 
 	uuid = get_backup_uuid(connection);
 	server_version = read_mysql_one_value(connection, "SELECT VERSION()");

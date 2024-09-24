@@ -180,6 +180,7 @@ extern uint		opt_backup_lock_timeout;
 extern uint		opt_backup_lock_retry_count;
 
 extern const char	*opt_history;
+extern my_bool		opt_history_disable_log_bin;
 extern my_bool		opt_decrypt;
 
 extern uint		opt_read_buffer_size;
