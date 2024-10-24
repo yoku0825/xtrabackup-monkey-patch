@@ -1531,6 +1531,11 @@ bool backup_finish(Backup_context &context) {
     history_lock_time = 0;
   }
 
+  // FLUSH BINARY LOGS again to wake binlog purge.
+  xb::info() << "Executing FLUSH NO_WRITE_TO_BINLOG BINARY LOGS";
+  xb_mysql_query(mysql_connection, "FLUSH NO_WRITE_TO_BINLOG BINARY LOGS",
+                 false);
+
   if (opt_safe_slave_backup && sql_thread_started) {
     xb::info() << "Starting slave SQL thread";
     xb_mysql_query(mysql_connection, "START SLAVE SQL_THREAD", false);
